@@ -4,9 +4,10 @@
 
   
 
-### ensure that you have *(pip)* installed:  
+### ensure that you have ***UV*** installed:
+```macOS/Linux: curl -LsSf https://astral.sh/uv/install.sh | sh```
 
--   flask 
-    -   werkzeug *(dependent)*
-    -   jinja *(dependent)*
-    -   python-dotenv *(dependent)*
+```Windows: powershell -c "irm https://astral.sh/uv/install.ps1 | iex"```
+
+### Then Run:
+```uv sync```
