@@ -15,11 +15,6 @@ if __name__ == '__main__':
 
 def thread():
     setup()
-    run()
 
 def setup():
     app.run(debug=True)
-
-def run():
-    print("Flask server running...")
-    time.sleep(5)
