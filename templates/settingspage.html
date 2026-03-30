@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings</title>
+    <!--Added Flask backend connection with the style sheet-->
+ <link rel="stylesheet" href="{{ url_for('static', filename='settings_stylesheet.css') }}">
+</head>
+<body>
+    <div class="settings-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+            <!--Beginning of the side bar for settings page-->
+                <h2>Smart Home Terminal</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+               <!--Mostly Placeholders for the  settings page-->
+                    <li class="active">General</li>
+                    <li>Connection</li>
+                    <li>Matter</li>
+                    <li>Updates</li>
+                    <li>Widgets Display</li>
+                    <li>Plugins</li>
+                    <li>Security</li>
+                    <li>System Information</li>
+                </ul>
+            </nav>
+        </aside>
+<!-- formatting for side of settings page-->
+        <main class="settings-main">
+            <div class="page-header">
+                <h1>System Settings</h1>
+                <p>Manage Smart Home Terminal and device preferences.</p>
+            </div>
+
+            <section class="settings-card">
+                <!--Possible Wifi Connections-->
+                <h3>Wifi</h3>
+
+                <div class="setting-row stack">
+                    <label for="wifi-type">Wifi Network</label>
+                    <select id="wifi-type" name="wifi_network">
+                        <option>Home WiFi</option>
+                        <option>Guest WiFi</option>
+                        <option>Office WiFi</option>
+                    </select>
+                </div>
+
+                <div class="setting-row">
+                    <span>Ethernet</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <h3>Bluetooth</h3>
+
+                <div class="setting-row stack">
+                    <label for="bluetooth-options">Connect</label>
+                    <select id="bluetooth-options" name="bluetooth_network">
+                        <option>Iphone</option>
+                        <option>Apple Watch</option>
+                        <option>Smart TV</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="settings-card">
+                <h3>Matter</h3>
+
+                <div class="setting-row stack">
+                    <label for="fabric-name">Fabric Name</label>
+                    <input type="text" id="fabric-name" name="fabric_name" value="Fabric">
+                </div>
+
+                <div class="info-row">
+                    <span>Current Nodes</span>
+                    <strong>1</strong>
+                </div>
+
+                <button class="secondary-btn">Add Device</button>
+            </section>
+
+            <section class="settings-card">
+                <h3>System Info</h3>
+
+                <div class="info-row">
+                    <span>Model</span>
+                    <strong>Smart.IO v1.0</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Software Version</span>
+                    <strong class="status-good">1.0.1 - Up to date</strong>
+                </div>
+
+                <div class="setting-row stack">
+                    <label for="language">Language</label>
+                    <select id="language" name="language">
+                        <option>English</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                    </select>
+                </div>
+
+                <div class="setting-row stack">
+                    <label for="timezone">Time Zone</label>
+                    <select id="timezone" name="timezone">
+                        <option>United States</option>
+                        <option>UTC</option>
+                        <option>Atlantic</option>
+                    </select>
+                </div>
+            </section>
+
+            <div class="action-row">
+                <button class="primary-btn">Save Changes</button>
+                <button class="ghost-btn">Defaults</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

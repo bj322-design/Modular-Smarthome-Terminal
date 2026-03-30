@@ -8,6 +8,9 @@ app = Flask(__name__)
 @app.route("/")
 def clientHome():
     return render_template("index.html")
+@app.route("/settings")
+def settings():
+    return render_template("settingspage.html")
 
 # Slated for removal-- starting through start.py now
 if __name__ == '__main__':
