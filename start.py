@@ -18,11 +18,13 @@ def start():
     sqlThread = threading.Thread(target=sql.thread(), daemon = True)
     pluginsThread = threading.Thread(target=plugins.thread(), daemon = True)
     flaskThread = threading.Thread(target=flaskServer.thread(), daemon = True)
+    #mqttThread = threading.Thread(target=mqtt.thread(), daemon = True) #This is to start the Sensors (Will fail without HA running)
 
     # Start the threads
     sqlThread.start()
     pluginsThread.start()
     flaskThread.start()
+    #mqttThread.start()
 
 # Perform setup operations
 def setup():
