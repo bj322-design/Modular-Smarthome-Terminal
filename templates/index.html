@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 <!--<center>
         <h1>Hello This is the placeholder for the <b>index.html</b></h1>
     </center>
@@ -35,35 +36,7 @@
 </html>
 
 <script>
-    async function updateClock() {
-        const response = await fetch("/time");
-        const data = await response.json();
-
-        document.getElementById("clock").innerText = data.time;
-    }
-
-    // update every 1 second
-    setInterval(updateClock, 1000);
-
-    // run once immediately
-    updateClock();
-
-    //TEMPERATURE
-    async function updateTemp() {
-        try {
-            //temperature" to match flaskServer.py
-            const response = await fetch("/temperature");
-            const data = await response.json();
-
-            // data.temp contains the formatted string from tempSensorWidget.update()
-            document.getElementById("temp").innerText = data.temp;
-        } catch (error) {
-            console.error("Error updating temperature:", error);
-        }
-    }
-    // Update Temperature every 2 seconds
-    setInterval(updateTemp, 2000);
-    updateTemp();
+    
 </script>
 
 </body>

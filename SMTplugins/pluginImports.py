@@ -1,0 +1,2 @@
+from SMTplugins.clock.clock_route import clock_bp
+from SMTplugins.TempSensor_Dummy.flaskTempSensorDummy import fTemp_bp
