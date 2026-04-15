@@ -1,14 +1,39 @@
-.grid-container {
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+/*.grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     padding: 20px;
 }
-
+*/
 .grid-box {
     background-color: #fff;
     border: 3px solid #0d0909;
     border-radius: 10px;
-    padding: 40px;
+    padding: 135px;
     text-align: center;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(3, 1fr);    /* 3 rows */
+    gap: 5px;
+    height: 90vh;
+    
+}
+
+.widget {
+    background-color: #fff;
+    padding: 20px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+
+
+
+

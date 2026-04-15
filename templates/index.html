@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smarthome Terminal</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+    {% for widget in widgets %}
+        {% if widget.css_name %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='widgetCSS/' + widget.css_name) }}">
+        {% endif %}
+    {% endfor %}
 </head>
+
 <body>
-    <center><h1>Hello This is the placeholder for the <b>index.html</b></h1></center>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!--<center>
+        <h1>Hello This is the placeholder for the <b>index.html</b></h1>
+    </center>
+-->
+
     <div class="grid-container">
-        <div class="grid-box">Box 1</div>
-        <div class="grid-box">Box 2</div>
-        <div class="grid-box">Box 3</div>
-        <div class="grid-box">Box 4</div>
-        <div class="grid-box">Box 5</div>
-        <div class="grid-box">Box 6</div>     
-        <div class="grid-box">Box 7</div>     
-        <div class="grid-box">Box 8</div>   
-        <div class="grid-box">Box 9</div>       
+        {% for widget in widgets %}
+        <div class="widget" id="widget-{{ widget.name }}"
+            style="grid-row: {{ widget.row }}; grid-column: {{ widget.col }}">
+            <span id="{{ widget.id }}">{{ widget.content }}</span>
+        </div>
+        {% endfor %}
+
+        {# Fill remaining empty spots if needed #}
+        {% for i in range(1, 10 - widgets|length) %}
+        <div class="grid-box">Box {%print(i + widgets | length)%}</div>
+        {% endfor %}
     </div>
+    
 </body>
+
 </html>
+
+<script>
+
+</script>
+
+</body>

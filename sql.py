@@ -5,11 +5,12 @@ import time
 
 def thread():
     setup()
-    run()
+    while True:
+        run()
+        time.sleep(5)
 
 def setup():
     print("Setting up sql...")
 
 def run():
     print("SQL running...")
-    time.sleep(5)
