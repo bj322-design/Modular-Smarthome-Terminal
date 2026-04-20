@@ -5,8 +5,6 @@
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border: 1px solid #4c566a;
-    
-    /* Make it fill the grid box */
     width: 50vh;
     height: 100%;
     overflow: hidden;
@@ -21,14 +19,13 @@
 
 /* City Name Header */
 .city-name {
-    font-size: 1.5rem; /* Scales well, or use 2.5vh */
+    font-size: 1.5rem; 
     font-weight: 600;
     color: #d8dee9;
 }
 
 /* Big Current Temp */
 .current-temp {
-    /* vmin ensures text scales relative to the smaller screen dimension */
     font-size: 8vmin; 
     font-weight: bold;
     color: #00d9ff; 
@@ -71,7 +68,6 @@
 }
 
 .weather-icon img {
-    /* Scale icon relative to box height */
     height: 10vh; 
     width: auto;
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));

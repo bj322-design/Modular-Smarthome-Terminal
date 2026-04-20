@@ -1,5 +1,4 @@
 export async function updateWeather() {
-    //const city = "Albany,NY"; 
     try {
         const response = await fetch(`/api/weather/smt`);
         const data = await response.json();
