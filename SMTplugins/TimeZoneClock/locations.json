@@ -1,0 +1,5 @@
+{
+    "L1": {"city": "Albany", "tz": "America/New_York"},
+    "L2": {"city": "London", "tz": "Europe/London"},
+    "L3": {"city": "Los Angeles", "tz": "America/Los_Angeles"}
+}
