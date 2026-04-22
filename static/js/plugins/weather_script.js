@@ -7,14 +7,18 @@ export async function updateWeather() {
 
         const weatherHTML = `
             <div class="weather-card">
-                <div class="city-name">${data.city}</div>
+                <div class="container">
+                    <div class="city-name">${data.city}</div>
+                    <div class="condition">${data.condition}</div>
+                </div>
                 <div class="current-temp">${data.current_temp}°</div>
-                <div class="condition">${data.condition}</div>
                 <div class="temp-range">
                     <span class="low">H: ${data.low}°</span>
+                    <div class="weather-icon"><img src="${data.icon}" alt="weather icon"></div>
                     <span class="high">L: ${data.high}°</span>
+                    
                 </div>
-                <div class="weather-icon"><img src="${data.icon}" alt="weather icon"></div>
+            
             </div>
         `;
 
