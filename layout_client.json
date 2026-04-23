@@ -32,6 +32,15 @@
       "css_name": "timeZone_widget.css",
       "row":2,
       "col": 1
+    },
+
+    {
+      "id": "google-tasks",
+      "name": "Google Tasks",
+      "class": "googleTasks-widget",
+      "css_name": "google_tasks_widget.css",
+      "row": 2,
+      "col": 2      
     }
   ]
 }
