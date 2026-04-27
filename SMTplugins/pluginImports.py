@@ -2,4 +2,5 @@ from SMTplugins.clock.clock_route import clock_bp
 from SMTplugins.TempSensor_Dummy.flaskTempSensorDummy import fTemp_bp
 from SMTplugins.Weather.weather_route import weather_bp
 from SMTplugins.TimeZoneClock.timeZone_route import timeZone_bp
+from SMTplugins.GoogleTasks.googleTasks_route import googleTasks_bp
 from SMTplugins.Spotify.spotify_route import spotify_bp
