@@ -109,7 +109,7 @@ def get_spotify():
         return jsonify({
             "track": "Connect Spotify",
             "artist": "Go to /login",
-            "albumArt": "https://via.placeholder.com/120",
+            "albumArt": "static\images\spotify-image-placeholder.png",
             "isPlaying": False
         })
 
@@ -139,7 +139,7 @@ def get_spotify():
             return jsonify({
                 "track": "Connect Spotify",
                 "artist": "Login required",
-                "albumArt": "https://via.placeholder.com/120",
+                "albumArt": "static\images\spotify-image-placeholder.png",
                 "isPlaying": False
             })
 
@@ -148,7 +148,7 @@ def get_spotify():
         return jsonify({
             "track": "Error",
             "artist": "Could not fetch",
-            "albumArt": "https://via.placeholder.com/120",
+            "albumArt": "static\images\spotify-image-placeholder.png",
             "isPlaying": False
         })
 
@@ -160,7 +160,7 @@ def get_spotify():
         return jsonify({
             "track": "Nothing Playing",
             "artist": "",
-            "albumArt": "https://via.placeholder.com/120",
+            "albumArt": "static\images\spotify-image-placeholder.png",
             "isPlaying": data.get("is_playing", False)
         })
 
