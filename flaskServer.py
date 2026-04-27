@@ -5,7 +5,8 @@ import os
 import json
 
 from SMTplugins.pluginImports import *
-
+from SMTplugins.Calendar.calendar_plugin import calendar_bp
+from SMTplugins.Package.package_plugin import package_bp
 
 app = Flask(__name__)
 
@@ -16,9 +17,10 @@ app.register_blueprint(clock_bp)
 app.register_blueprint(fTemp_bp)
 app.register_blueprint(weather_bp)
 app.register_blueprint(timeZone_bp)
+app.register_blueprint(googleTasks_bp)
 app.register_blueprint(spotify_bp)
-
-
+app.register_blueprint(calendar_bp)
+app.register_blueprint(package_bp)
 
 
 #allows for easier starting of flask from start file

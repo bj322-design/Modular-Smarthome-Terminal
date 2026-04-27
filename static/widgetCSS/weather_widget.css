@@ -3,18 +3,13 @@
     border-radius: 15px;
     color: #eceff4;
     text-align: center;
-    /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    /*border: 1px solid #4c566a;*/
     width: 30vw;
     height: 20vh;
     overflow: hidden;
-    
-    /* Use Flexbox to distribute content vertically */
     display: flex;
     flex-direction: row;
     justify-content: center; 
     align-items: center;
-    /*padding: 1vh; /* Relative padding */
     box-sizing: border-box;
 }
 
@@ -48,7 +43,6 @@
     display: flex;
     justify-content: space-around;
     font-size: 2rem;
-    /*border-top: 1px solid #4c566a;*/
     padding-top: 1vh;
     align-items: center;
 }

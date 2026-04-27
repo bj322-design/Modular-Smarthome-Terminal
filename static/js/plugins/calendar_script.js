@@ -12,4 +12,4 @@ export async function updateCalendar() {
 // Update every 60 seconds
 setInterval(updateCalendar, 60000);
 // Run once immediately
-updateCalendar();
+updateCalendar(); 

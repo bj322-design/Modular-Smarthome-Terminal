@@ -17,29 +17,53 @@
       "col": 2
     },
     {
-  "id": "weather",
-  "name": "Weather",
-  "class": "weather-widget",
-  "css_name": "weather_widget.css",
-  "row": 1,
-  "col": 3
-},
-    { 
+      "id": "weather",
+      "name": "Weather",
+      "class": "weather-widget",
+      "css_name": "weather_widget.css",
+      "row": 1,
+      "col": 3
+     },
+     { 
       "id": "time-zone",
-      "name": "Time Zone",
-      "class": "timeZone-widget",
-      "css_name": "timeZone_widget.css",
-      "row":2,
-      "col": 1
+       "name": "Time Zone",
+       "class": "timeZone-widget",
+       "css_name": "timeZone_widget.css",
+       "row":2,
+       "col": 1
+     },
+      {
+        "id": "calendar",
+        "name": "Calendar",
+        "class": "calendar-widget",
+        "css_name": "calendar_widget.css",
+        "row": 2,
+        "col": 2
     },
-
-    {
-  "id": "spotify",
-  "name": "Spotify",
-  "class": "spotify-widget",
-  "css_name": "spotify_widget.css",
-  "row": 2,
-  "col": 2
-}
+      {
+        "id": "packages",
+        "name": "Packages",
+        "class": "package-widget",
+        "css_name": "package_widget.css",
+        "row": 2,
+        "col": 3
+    },  
+     {
+       "id": "google-tasks",
+       "name": "Google Tasks",
+       "class": "googleTasks-widget",
+       "css_name": "google_tasks_widget.css",
+       "row": 3,
+       "col": 3      
+     },
+     {
+       "id": "spotify",
+       "name": "Spotify",
+       "class": "spotify-widget",
+       "css_name": "spotify_widget.css",
+       "row": 3,
+       "col": 2
+       }
   ]
+
 }

@@ -20,11 +20,14 @@
     </center>
 -->
 
+    
+
     <div class="grid-container">
         {% for widget in widgets %}
         <div class="widget" id="widget-{{ widget.name }}"
             style="grid-row: {{ widget.row }}; grid-column: {{ widget.col }}">
             <span id="{{ widget.id }}">{{ widget.content }}</span>
+             <!-- <div id="content-{{ widget.id }}"></div> -->
         </div>
         {% endfor %}
 
@@ -33,13 +36,43 @@
         <div class="grid-box">Box {%print(i + widgets | length)%}</div>
         {% endfor %}
     </div>
+
+
+
     
 </body>
 
 </html>
 
 <script>
+const routeMap = {
+    "clock": "/time",
+    "temp": "/temperature",
+    "weather": "/api/weather/smt",
+    "time-zone": "/api/timezone/data",
+    "calendar": "/calendar",
+    "packages": "/packages",
+    "spotify": "/spotify",
+    "google-tasks": "/google-tasks"
+};
 
+const widgetIds = [
+    {% for widget in widgets %}
+    "{{ widget.id }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+widgetIds.forEach(id => {
+    const route = routeMap[id];
+    if (!route) return;
+
+    fetch(route)
+        .then(r => r.text())
+        .then(html => {
+            const el = document.getElementById("content-" + id);
+            if (el) el.innerHTML = html;
+        });
+});
 </script>
-
 </body>
+

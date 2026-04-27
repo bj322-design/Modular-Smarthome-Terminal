@@ -85,7 +85,7 @@ class calendarWidget(Widget):
             # Placeholder: inject a couple of demo events so the UI isn't empty
             today = date.today().isoformat()
             self._events = {
-                today: ["Class 4PM – LC 22", "Class 2 5PM – LC 57"]
+                today: ["Class 4PM – LC 22", "Gym 5PM"]
             }
         print(f"Calendar Widget updated – {date.today().strftime('%B %Y')}")
 
