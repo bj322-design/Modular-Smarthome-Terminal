@@ -1,15 +1,19 @@
 from flask import Blueprint, jsonify, redirect, request
 import base64
 import requests
+
 # Blueprint for Spotify
 spotify_bp = Blueprint("spotify_bp", __name__)
-# Spotify API credientials that are needed 
+
+# Spotify API credentials that are needed 
 CLIENT_ID = "f77a81fa784b46d6a3513a1fddbd3a2f"
 CLIENT_SECRET = "8ea40647f6c34ed7bae3afa7c5e1a267"
 REDIRECT_URI = "http://127.0.0.1:5000/callback"
- # Stores access
+
+# Stores access
 access_token = None
 refresh_token = None
+
 
 # Authorization header for token request
 def get_auth_header():
@@ -18,9 +22,12 @@ def get_auth_header():
     auth_base64 = base64.b64encode(auth_bytes).decode("utf-8")
     return {"Authorization": f"Basic {auth_base64}"}
 
+
 # Creates a bearer token header for the API calls 
 def get_bearer_header():
     return {"Authorization": f"Bearer {access_token}"}
+
+
 # When tokens expire this will refresh them
 def refresh_access_token():
     global access_token, refresh_token
@@ -44,6 +51,7 @@ def refresh_access_token():
     access_token = token_data.get("access_token")
     return True
 
+
 # Route needed to redirect user to Spotify login page 
 @spotify_bp.route("/login")
 def spotify_login():
@@ -56,6 +64,7 @@ def spotify_login():
         f"&scope={scope}"
     )
     return redirect(auth_url)
+
 
 # Call back route after Spotify login 
 @spotify_bp.route("/callback")
@@ -90,9 +99,12 @@ def spotify_callback():
 
     return redirect("/")
 
+
 # Main API route
 @spotify_bp.route("/api/spotify", methods=["GET"])
 def get_spotify():
+
+    # If not logged in yet
     if not access_token:
         return jsonify({
             "track": "Connect Spotify",
@@ -100,12 +112,14 @@ def get_spotify():
             "albumArt": "https://via.placeholder.com/120",
             "isPlaying": False
         })
-# Request current playback 
+
+    # Request current playback 
     response = requests.get(
         "https://api.spotify.com/v1/me/player/currently-playing",
         headers=get_bearer_header()
     )
-# This is when no song is playing 
+
+    # This is when no song is playing 
     if response.status_code == 204:
         return jsonify({
             "track": "Nothing Playing",
@@ -113,7 +127,8 @@ def get_spotify():
             "albumArt": "https://via.placeholder.com/120",
             "isPlaying": False
         })
-# Token has expired
+
+    # Token has expired
     if response.status_code == 401:
         if refresh_access_token():
             response = requests.get(
@@ -127,7 +142,8 @@ def get_spotify():
                 "albumArt": "https://via.placeholder.com/120",
                 "isPlaying": False
             })
-# Handles any API errors
+
+    # Handles any API errors
     if response.status_code != 200:
         return jsonify({
             "track": "Error",
@@ -139,6 +155,7 @@ def get_spotify():
     data = response.json()
     item = data.get("item")
 
+    # If nothing playing
     if not item:
         return jsonify({
             "track": "Nothing Playing",
@@ -146,7 +163,8 @@ def get_spotify():
             "albumArt": "https://via.placeholder.com/120",
             "isPlaying": data.get("is_playing", False)
         })
-# Artist name and art
+
+    # Artist name and art
     artists = ", ".join(artist["name"] for artist in item.get("artists", []))
     images = item.get("album", {}).get("images", [])
     album_art = images[0]["url"] if images else "https://via.placeholder.com/120"

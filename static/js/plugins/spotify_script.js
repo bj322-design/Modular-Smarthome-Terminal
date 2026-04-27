@@ -1,6 +1,6 @@
 // Main function in order call Spotify and update widget UI
 async function updateSpotify() {
-    const widget = document.getElementById('widget-spotify');
+    const widget = document.getElementById('widget-Spotify');
     // exit if not found
     if (!widget) return;
 

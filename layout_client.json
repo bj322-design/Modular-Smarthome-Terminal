@@ -17,14 +17,13 @@
       "col": 2
     },
     {
-      "id": "weather",
-      "name": "Weather",
-      "class": "weather-widget",
-      "css_name": "weather_widget.css",
-      "row": 1,
-      "col": 3
-    },
-    
+  "id": "weather",
+  "name": "Weather",
+  "class": "weather-widget",
+  "css_name": "weather_widget.css",
+  "row": 1,
+  "col": 3
+},
     { 
       "id": "time-zone",
       "name": "Time Zone",
