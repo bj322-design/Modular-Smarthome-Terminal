@@ -63,6 +63,14 @@
        "css_name": "spotify_widget.css",
        "row": 3,
        "col": 2
+       },
+       {
+        "id": "fake-light",
+        "name": "Fake Light",
+        "class": "fake-light-",
+        "css_name": "fakeLight_widget.css",
+        "row": 3,
+        "col": 1
        }
   ]
 

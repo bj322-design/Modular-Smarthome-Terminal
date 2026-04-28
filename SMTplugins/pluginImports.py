@@ -4,3 +4,4 @@ from SMTplugins.Weather.weather_route import weather_bp
 from SMTplugins.TimeZoneClock.timeZone_route import timeZone_bp
 from SMTplugins.GoogleTasks.googleTasks_route import googleTasks_bp
 from SMTplugins.Spotify.spotify_route import spotify_bp
+from SMTplugins.FakeLight.fakeLight_route import fakeLight_bp

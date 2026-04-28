@@ -12,3 +12,4 @@ import { updatePackages } from './plugins/package_script.js';
 updateClock();
 updateCalendar();
 updatePackages();
+import './plugins/fakeLight_script.js';

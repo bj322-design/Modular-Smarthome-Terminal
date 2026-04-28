@@ -21,6 +21,8 @@ app.register_blueprint(googleTasks_bp)
 app.register_blueprint(spotify_bp)
 app.register_blueprint(calendar_bp)
 app.register_blueprint(package_bp)
+app.register_blueprint(fakeLight_bp)
+
 
 
 #allows for easier starting of flask from start file
