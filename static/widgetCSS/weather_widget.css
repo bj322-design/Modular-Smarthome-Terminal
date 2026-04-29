@@ -48,12 +48,12 @@
     flex-direction: column;
 }
 
-.high { 
+.low { 
     color: #cb4552; 
     font-weight: bold;
 }
 
-.low { 
+.high { 
     color: #5b93ca; 
     font-weight: bold;
 }

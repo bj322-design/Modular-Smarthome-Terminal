@@ -13,8 +13,8 @@ export async function updateWeather() {
                 </div>
                 <div class="current-temp">${data.current_temp}°</div>
                 <div class="temp-range">
-                    <span class="low">H: ${data.low}°</span>
-                    <span class="high">L: ${data.high}°</span>
+                    <span class="low">H: ${data.high}°</span>
+                    <span class="high">L: ${data.low}°</span>
                     </div>
                 <div class="weather-icon"><img src="${data.icon}" alt="weather icon"></div>
                     
