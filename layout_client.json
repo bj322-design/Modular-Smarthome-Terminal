@@ -24,6 +24,22 @@
       "row": 1,
       "col": 3
      },
+    {
+      "id": "time-zone",
+      "name": "Time Zone",
+      "class": "timeZone-widget",
+      "css_name": "timeZone_widget.css",
+      "row": 2,
+      "col": 1
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "class": "date-widget",
+      "css_name": "date_widget.css",
+      "row": 2,
+      "col": 3
+    }
      { 
       "id": "time-zone",
        "name": "Time Zone",
@@ -39,15 +55,7 @@
         "css_name": "calendar_widget.css",
         "row": 2,
         "col": 2
-    },
-      {
-        "id": "packages",
-        "name": "Packages",
-        "class": "package-widget",
-        "css_name": "package_widget.css",
-        "row": 2,
-        "col": 3
-    },  
+    }, 
      {
        "id": "google-tasks",
        "name": "Google Tasks",

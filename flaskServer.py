@@ -17,6 +17,8 @@ app.register_blueprint(clock_bp)
 app.register_blueprint(fTemp_bp)
 app.register_blueprint(weather_bp)
 app.register_blueprint(timeZone_bp)
+app.register_blueprint(date_bp)
+
 app.register_blueprint(googleTasks_bp)
 app.register_blueprint(spotify_bp)
 app.register_blueprint(calendar_bp)
