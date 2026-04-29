@@ -13,7 +13,7 @@ HEADERS = {
     'Accept': 'application/geo+json'
 }
 
-DATA_FILE = "SMTplugins\Weather\weather_city.json"
+DATA_FILE = "SMTplugins/Weather/weather_city.json"
 
 
 @weather_bp.route('/api/weather/smt', methods=['GET'])
