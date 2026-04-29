@@ -1,0 +1,7 @@
+# Ignore Python bytecode
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore Google tasks credentials
+SMTplugins/GoogleTasks/token.json
