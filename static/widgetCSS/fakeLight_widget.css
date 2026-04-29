@@ -1,6 +1,6 @@
 .light-card {
     width: fit-content;
-    height: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +22,7 @@
 .light-label { 
     color: #d8dee9;
     font-size: 28px; 
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     padding: 10px;
 }
 
@@ -30,13 +30,13 @@
     font-size: 40px;
     font-weight: bold;
     color: #eceff4;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
 }
 
 .on .light-status { color: #ebcb8b; } /* Warm Yellow for ON */
 
 .switch-btn {
-    padding: 10px 20px;
+    /*padding: 10px 20px;*/
     border-radius: 8px;
     border: none;
     background: #4c566a;
