@@ -108,7 +108,7 @@ def get_spotify():
     if not access_token:
         return jsonify({
             "track": "Connect Spotify",
-            "artist": """<button class="login" onclick="window.open('/login', '_blank');">Login</button>""",
+            "artist": """<button class="login" onclick= window.location.replace("/login");>Login</button>""",
             "albumArt": "static\images\spotify-image-placeholder.png",
             "isPlaying": False
         })
