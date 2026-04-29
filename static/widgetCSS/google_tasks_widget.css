@@ -15,7 +15,7 @@
 
 /* Header Styling */
 .tasks-header {
-    font-size: 1.2rem;
+    font-size: 32px;
     font-weight: bold;
     color: #88c0d0; /* SMT Accent Blue */
     border-bottom: 1px solid #4c566a;
@@ -43,7 +43,7 @@
     padding: 1vh;
     border-radius: 8px;
     color: #eceff4;
-    font-size: 1rem;
+    font-size: 30px;
     transition: background 0.2s ease;
 }
 
@@ -82,7 +82,7 @@
     border: none;
     background-color: rgba(76, 86, 106, 0.8);;
     color: #88c0d0;
-    font-size: 16px;
+    font-size: 32px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds a subtle shadow */
     font-weight: bolder;

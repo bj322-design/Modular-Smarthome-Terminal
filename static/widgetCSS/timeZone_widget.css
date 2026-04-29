@@ -4,12 +4,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2vh;
+    /*gap: 2vh;*/
 }
 
 .tz-entry {
     border-bottom: 1px solid #4c566a;
-    padding-bottom: 5px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,17 +20,18 @@
 }
 
 .tz-city {
-    font-size: 2.5rem;
+    font-size: 50px;
     color: white;
     font-weight: bold;
     padding-right: 20px
 }
 
 .tz-time {
-    font-size: 2.5rem;
+    font-size: 50px;
     color: #eceff4;
     font-family: 'Courier New', Courier, monospace;
     padding-left: 20px;
     color: #00ff99;
     text-shadow: 0 0 30px rgba(0, 255, 153, 0.3);
+    
 }

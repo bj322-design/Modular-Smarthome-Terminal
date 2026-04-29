@@ -11,8 +11,9 @@ async function updateSpotify() {
         const data = await response.json();
         // Spotify UI rendoring 
         widget.innerHTML = `
+            <div class="spotify-art">
+                <img src="${data.albumArt}" alt="Album Art" class="spotify-album-art"></div>
             <div class="spotify-content">
-                <img src="${data.albumArt}" alt="Album Art" class="spotify-album-art">
                 <div class="spotify-info">
                     <div class="spotify-track">${data.track}</div>
                     <div class="spotify-artist">${data.artist}</div>
@@ -50,3 +51,4 @@ window.addEventListener('DOMContentLoaded', () => {
     // Refreshes spotify every 5 seconds 
     setInterval(updateSpotify, 5000);
 });
+

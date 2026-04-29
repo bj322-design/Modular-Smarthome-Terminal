@@ -14,10 +14,12 @@ export async function updateWeather() {
                 <div class="current-temp">${data.current_temp}°</div>
                 <div class="temp-range">
                     <span class="low">H: ${data.low}°</span>
-                    <div class="weather-icon"><img src="${data.icon}" alt="weather icon"></div>
                     <span class="high">L: ${data.high}°</span>
+                    </div>
+                <div class="weather-icon"><img src="${data.icon}" alt="weather icon"></div>
                     
-                </div>
+                    
+                
             
             </div>
         `;
