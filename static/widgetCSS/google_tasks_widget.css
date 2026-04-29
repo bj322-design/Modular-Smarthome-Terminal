@@ -61,7 +61,7 @@
 
 /* Scrollbar Styling for a clean look on the Pi */
 .tasks-list::-webkit-scrollbar {
-    width: 5px;
+    width: 30px;
 }
 
 .tasks-list::-webkit-scrollbar-track {
