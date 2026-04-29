@@ -260,7 +260,37 @@ input:checked + .slider::before {
     background: rgba(255, 255, 255, 0.06);
     color: #ffffff;
 }
+.widget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+    margin-bottom: 18px;
+}
 
+.widget-box {
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 18px;
+    padding: 16px;
+    min-height: 120px;
+}
+.widget-box select {
+    margin-top: 6px;
+}
+
+.widget-box label {
+    display: block;
+    margin-bottom: 10px;
+    color: #dbeafe;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.widget-box:hover {
+    border-color: rgba(96, 165, 250, 0.45);
+    background: rgba(30, 41, 59, 0.82);
+}
 @media (max-width: 900px) {
     .settings-layout {
         flex-direction: column;

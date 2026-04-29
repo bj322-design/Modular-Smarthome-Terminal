@@ -117,12 +117,65 @@
                     </select>
                 </div>
             </section>
+<section class="settings-card">
+    <h3>Widget Layout</h3>
+    <p>Choose which widget appears in each dashboard box.</p>
 
+    <div class="widget-grid">
+        <div class="widget-box">
+            <label>Box 1</label>
+            <select id="box1"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 2</label>
+            <select id="box2"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 3</label>
+            <select id="box3"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 4</label>
+            <select id="box4"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 5</label>
+            <select id="box5"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 6</label>
+            <select id="box6"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 7</label>
+            <select id="box7"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 8</label>
+            <select id="box8"></select>
+        </div>
+
+        <div class="widget-box">
+            <label>Box 9</label>
+            <select id="box9"></select>
+        </div>
+    </div>
+
+    <button class="secondary-btn" id="save-layout-btn">Save Widget Layout</button>
+</section>
             <div class="action-row">
                 <button class="primary-btn">Save Changes</button>
                 <button class="ghost-btn">Defaults</button>
             </div>
         </main>
     </div>
+        <script src="{{ url_for('static', filename='js/settings_layout.js') }}"></script>
 </body>
 </html>
