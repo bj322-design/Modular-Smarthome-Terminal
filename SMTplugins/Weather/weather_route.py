@@ -26,7 +26,7 @@ def get_nws_weather():
         except Exception as e:
             print(f"Error reading JSON File: {e}")
 
-    city = request.args.get('city', "Albany")
+    city = request.args.get('city', currentVal)
     try:
         # 1) Geocode city to Lat/Lon
         location = geolocator.geocode(city)
