@@ -3,5 +3,6 @@
 *.py[cod]
 *$py.class
 
-# Ignore Google tasks credentials
-SMTplugins/GoogleTasks/token.json
+# Ignore Google credentials
+SMTplugins\GoogleTasks\token.json
+SMTplugins\Calendar\token_cal.json
