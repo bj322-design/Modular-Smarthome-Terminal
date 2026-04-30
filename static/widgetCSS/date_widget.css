@@ -20,6 +20,7 @@
 
 .date-month,
 .date-day,
+.date-name,
 .date-year {
     /*font-size: 40px;   /* SAME SIZE for all */
     font-weight: bold;
