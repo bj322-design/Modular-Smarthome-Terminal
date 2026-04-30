@@ -161,11 +161,56 @@ class calendarWidget(Widget):
         return 60000  # Refresh every 1 minute to stay within API limits
 
     def handle_event(self, event, args):
-        # Keeps your existing add/delete/edit logic for local testing
+
+    # -------- ADD TASK --------
         if event == "add_event":
             date_str = args.get("date")
             title = args.get("title", "Event")
+
             if date_str:
-                if date_str not in self._events: self._events[date_str] = []
-                self._events[date_str].append({"id": int(time.time() * 1000), "title": title})
-                with open(self.file, "w") as f: json.dump(self._events, f)
+                if date_str not in self._events:
+                    self._events[date_str] = []
+
+                self._events[date_str].append({
+                    "id": int(time.time()*1000),
+                    "title": title
+                })
+
+                self._save_events()
+
+        # -------- NEXT MONTH --------
+        elif event == "next_month":
+            print("NEXT MONTH TRIGGERED")
+
+            if self.current_date.month == 12:
+                self.current_date = self.current_date.replace(
+                    year=self.current_date.year + 1,
+                    month=1
+                )
+            else:
+                self.current_date = self.current_date.replace(
+                    month=self.current_date.month + 1
+                )
+
+            self._save_state()
+            print("NEW MONTH:", self.current_date)
+
+        # -------- PREVIOUS MONTH --------
+        elif event == "prev_month":
+            print("PREV MONTH TRIGGERED")
+
+            if self.current_date.month == 1:
+                self.current_date = self.current_date.replace(
+                    year=self.current_date.year - 1,
+                    month=12
+                )
+            else:
+                self.current_date = self.current_date.replace(
+                    month=self.current_date.month - 1
+                )
+
+            self._save_state()
+            print("NEW MONTH:", self.current_date)
+
+        else:
+            print(f"[calendarWidget] Unhandled event: {event} args={args}")
