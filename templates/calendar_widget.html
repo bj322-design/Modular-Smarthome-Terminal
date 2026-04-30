@@ -203,10 +203,11 @@
         <div class="cal-day
           {% if not day.in_month %}out-of-month{% endif %}
           {% if day.is_today %}today{% endif %}"
+            data-date="{{ day.date_str }}"
           title="{{ day.date_str }}{% if day.events %}: {{ day.events | join(', ') }}{% endif %}">
           <span class="cal-day-num">{{ day.day }}</span>
-          {% if day.events %}
-            <div class="cal-event-dot"></div>
+          {% if day.is_today and day.events %}
+          <div class="cal-event-dot"></div>
           {% endif %}
         </div>
       {% endfor %}
@@ -214,7 +215,7 @@
   </div>
 
   <!-- Today's events -->
-  <div class="cal-events-section">
+  <!-- <div class="cal-events-section">
     <div class="cal-events-title">Today</div>
     {% set today_events = [] %}
     {% for week in data.weeks %}
@@ -236,5 +237,29 @@
     {% else %}
       <div class="cal-no-events">No events today</div>
     {% endif %}
+  </div> -->
+   <div class="cal-events-section">
+    <div class="cal-events-title" id="eventsTitle">Select a day</div>
+
+    <div id="selectedEventsContainer">
+     <div class="cal-no-events">Click a date to see tasks</div>
   </div>
+  </div>
+
+<div id="taskSection" class="task-section" style="display:none;"></div>
+  
+  <div id="selectedDateLabel" class="task-label"></div>
+
+  <div class="task-input-row">
+    <input id="taskInput" placeholder="Add task..." />
+    <button onclick="addTask()">Add</button>
+  </div>
+
 </div>
+
+<script>
+      window.calendarEvents = {{ data.weeks | tojson }};
+</script>
+
+</div>
+

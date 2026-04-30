@@ -6,12 +6,20 @@ from widget import Widget
 from datetime import datetime, date
 import calendar
 import json
+import os
+import time
 
 class calendarWidget(Widget):
 
     def __init__(self):
         self._preferences = self.widgetDefaultPreferences
-        self._events = {}  # date_str -> list of event names
+        self.file = "calendar_events.json"
+
+        if os.path.exists(self.file):
+            with open(self.file, "r") as f:
+                self._events = json.load(f)
+        else:
+            self._events = {}
 
     @property
     def widgetName(self):
@@ -82,11 +90,11 @@ class calendarWidget(Widget):
         if self._preferences.get("use_google_cal"):
             self._fetch_google_events()
         else:
-            # Placeholder: inject a couple of demo events so the UI isn't empty
-            today = date.today().isoformat()
-            self._events = {
-                today: ["Class 4PM – LC 22", "Gym 5PM"]
-            }
+            # Only add demo data if nothing exists yet
+            if not self._events:
+                today = date.today().isoformat()
+                self._events[today] = ["Class 4PM – LC 22", "Gym 5PM"]
+
         print(f"Calendar Widget updated – {date.today().strftime('%B %Y')}")
 
     def _fetch_google_events(self):
@@ -105,19 +113,57 @@ class calendarWidget(Widget):
             print(f"[calendarWidget] Google Calendar fetch failed: {e}")
 
     def handle_event(self, event, args):
-        """
-        Supported events:
-          - "prev_month"  : (future) navigate to previous month
-          - "next_month"  : (future) navigate to next month
-          - "add_event"   : args = {"date": "YYYY-MM-DD", "title": "..."}
-        """
         if event == "add_event":
             date_str = args.get("date")
             title = args.get("title", "Event")
+
             if date_str:
                 if date_str not in self._events:
                     self._events[date_str] = []
-                self._events[date_str].append(title)
+
+                task = {
+                    "id": int(time.time() * 1000),  # unique ID
+                    "title": title
+                }
+
+                self._events[date_str].append(task)
+
+                with open(self.file, "w") as f:
+                    json.dump(self._events, f)
+
                 print(f"[calendarWidget] Added event '{title}' on {date_str}")
+
+
+        elif event == "delete_event":
+            date_str = args.get("date")
+            task_id = args.get("id")
+
+            if date_str in self._events:
+                self._events[date_str] = [
+                    t for t in self._events[date_str] if t["id"] != task_id
+                ]
+
+            with open(self.file, "w") as f:
+                json.dump(self._events, f)
+
+            print(f"[calendarWidget] Deleted task {task_id}")
+
+
+        elif event == "edit_event":
+            date_str = args.get("date")
+            task_id = args.get("id")
+            new_title = args.get("title")
+
+            if date_str in self._events:
+                for t in self._events[date_str]:
+                    if t["id"] == task_id:
+                        t["title"] = new_title
+
+            with open(self.file, "w") as f:
+                json.dump(self._events, f)
+
+            print(f"[calendarWidget] Edited task {task_id}")
+
+
         else:
             print(f"[calendarWidget] Unhandled event: {event} args={args}")
