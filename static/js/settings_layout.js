@@ -8,6 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const SubmitBut = document.getElementById("save-layout-btn");
+
+    if(SubmitBut)
+        SubmitBut.addEventListener("click", submit);
+})
+
 async function loadLayout() {
     const res = await fetch("/api/layout");
     const data = await res.json();
@@ -41,6 +50,37 @@ async function loadLayout() {
 async function resetLayout() {
     await fetch("/api/layout/default", {
         method: "POST"
+    });
+
+    await loadLayout();
+}
+
+async function submit() {
+    const updatedWidgets = [];
+
+    // Loop through the 9 boxes to get current selections
+    for (let i = 1; i <= 9; i++) {
+        const select = document.getElementById("box" + i);
+        if (select) {
+            const row = Math.ceil(i / 3);
+            const col = (i - 1) % 3 + 1;
+            
+            updatedWidgets.push({
+                id: select.value,
+                name: select.options[select.selectedIndex].text,
+                row: row,
+                col: col
+            });
+        }
+    }
+
+    // Send the collected data to the API
+    await fetch("/api/layout", {
+        method: "POST", // Capitalized for best practice
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ widgets: updatedWidgets })
     });
 
     await loadLayout();
