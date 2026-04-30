@@ -10,6 +10,9 @@ async function updateDate() {
         await fetch('/api/date');
 
         const d = new Date();
+        
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const dayName = days[new Date().getDay()]; 
 
         const month = d.toLocaleString('en-US', { month: 'long' });
         const day = d.getDate();
@@ -17,6 +20,7 @@ async function updateDate() {
 
         widget.innerHTML = `
             <div class="date-container">
+                <div class="date-name">${dayName}</div>
                 <div class="date-month">${month}</div>
                 <div class="date-day">${day}</div>
                 <div class="date-year">${year}</div>
