@@ -3,126 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Settings</title>
-    <!--Added Flask backend connection with the style sheet-->
- <link rel="stylesheet" href="{{ url_for('static', filename='settings_stylesheet.css') }}">
+    <title>System Settings — Smart Home Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='settings_stylesheet.css') }}">
 </head>
 <body>
     <div class="settings-layout">
 
         <aside class="sidebar">
             <div class="sidebar-header">
-            <!--Beginning of the side bar for settings page-->
-                <h2>Smart Home Terminal</h2>
+                <div class="logo-mark">SHT</div>
+                <h2>Smart Home<br>Terminal</h2>
             </div>
-
             <nav class="sidebar-nav">
                 <ul>
-               <!--Mostly Placeholders for the  settings page-->
-                    <li class="active">General</li>
-                    <li>Connection</li>
-                    <li>Matter</li>
-                    <li>Updates</li>
-                    <li>Widgets Display</li>
-                    <li>Plugins</li>
-                    <li>Security</li>
-                    <li>System Information</li>
+                    <li data-section="general">
+                        <span class="nav-icon">⬡</span> General
+                    </li>
+                    <li class="active" data-section="layout">
+                        <span class="nav-icon">⊞</span> Widget Layout
+                    </li>
+                    <li data-section="connection">
+                        <span class="nav-icon">◈</span> Widget Preferences
+                    </li>
+                    <li data-section="matter">
+                        <span class="nav-icon">◉</span> Matter
+                    </li>
+                    <li data-section="updates">
+                        <span class="nav-icon">↻</span> Updates
+                    </li>
+                    <li data-section="plugins">
+                        <span class="nav-icon">⬡</span> Plugins
+                    </li>
+                    <li data-section="security">
+                        <span class="nav-icon">◈</span> Security
+                    </li>
+                    <li data-section="sysinfo">
+                        <span class="nav-icon">◉</span> System Info
+                    </li>
                 </ul>
             </nav>
         </aside>
-<!-- formatting for side of settings page-->
+
         <main class="settings-main">
-            <div class="page-header">
-                <h1>System Settings</h1>
-                <p>Manage Smart Home Terminal and device preferences.</p>
-            </div>
 
-            <section class="settings-card">
-                <!--Possible Wifi Connections-->
-                <h3>Wifi</h3>
-
-                <div class="setting-row stack">
-                    <label for="wifi-type">Wifi Network</label>
-                    <select id="wifi-type" name="wifi_network">
-                        <option>Home WiFi</option>
-                        <option>Guest WiFi</option>
-                        <option>Office WiFi</option>
-                    </select>
+            <!-- ── WIDGET LAYOUT SECTION ── -->
+            <section id="section-layout" class="section-panel active">
+                <div class="page-header">
+                    <div>
+                        <h1>Widget Layout</h1>
+                        <p>Drag widgets from the pool onto the grid to arrange your dashboard.</p>
+                    </div>
+                    <div class="client-selector-wrap">
+                        <label for="client-select">Client</label>
+                        <select id="client-select">
+                            {% for client in clients %}
+                            <option value="{{ client.id }}">{{ client.name }} ({{ client.id }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
 
-                <div class="setting-row">
-                    <span>Ethernet</span>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                <div class="layout-editor">
+
+                    <!-- Widget Pool -->
+                    <div class="widget-pool-section">
+                        <div class="section-label">Available Widgets <span class="badge" id="pool-count">0</span></div>
+                        <div class="widget-pool" id="widget-pool">
+                            <!-- populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Grid Editor -->
+                    <div class="grid-editor-section">
+                        <div class="section-label">
+                            Dashboard Grid
+                            <span class="grid-hint">3 × 3</span>
+                        </div>
+                        <div class="grid-editor" id="grid-editor">
+                            <!-- 9 cells rendered by JS -->
+                        </div>
+                        <div class="grid-actions">
+                            <button class="ghost-btn" id="clear-btn">Clear Grid</button>
+                            <button class="primary-btn" id="save-layout-btn">
+                                <span class="btn-text">Save Layout</span>
+                                <span class="btn-icon">→</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
 
-                <h3>Bluetooth</h3>
+                <div id="status-toast" class="toast hidden"></div>
+            </section>
 
-                <div class="setting-row stack">
-                    <label for="bluetooth-options">Connect</label>
-                    <select id="bluetooth-options" name="bluetooth_network">
-                        <option>Iphone</option>
-                        <option>Apple Watch</option>
-                        <option>Smart TV</option>
-                    </select>
+            <!-- ── GENERAL SECTION ── -->
+            <section id="section-general" class="section-panel">
+                <div class="page-header"><div><h1>General</h1><p>General system preferences.</p></div></div>
+                <div class="settings-card">
+                    <h3>System Info</h3>
+                    <div class="info-row"><span>Model</span><strong>Smart.IO v1.0</strong></div>
+                    <div class="info-row"><span>Software Version</span><strong class="status-good">1.0.1 — Up to date</strong></div>
+                    <div class="setting-row stack">
+                        <label for="language">Language</label>
+                        <select id="language"><option>English</option><option>Spanish</option><option>French</option></select>
+                    </div>
+                    <div class="setting-row stack">
+                        <label for="timezone">Time Zone</label>
+                        <select id="timezone"><option>United States</option><option>UTC</option><option>Atlantic</option></select>
+                    </div>
+                </div>
+                <div class="action-row">
+                    <button class="primary-btn">Save Changes</button>
+                    <button class="ghost-btn">Defaults</button>
                 </div>
             </section>
 
-            <section class="settings-card">
-                <h3>Matter</h3>
-
-                <div class="setting-row stack">
-                    <label for="fabric-name">Fabric Name</label>
-                    <input type="text" id="fabric-name" name="fabric_name" value="Fabric">
+            <!-- ── WIDGET PREFERENCES SECTION ── -->
+            <section id="section-connection" class="section-panel">
+                <div class="page-header">
+                    <div>
+                        <h1>Widget Preferences</h1>
+                        <p>Configure per-widget settings for each client.</p>
+                    </div>
+                    <div class="client-selector-wrap">
+                        <label for="pref-client-select">Client</label>
+                        <select id="pref-client-select">
+                            {% for client in clients %}
+                            <option value="{{ client.id }}">{{ client.name }} ({{ client.id }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
 
-                <div class="info-row">
-                    <span>Current Nodes</span>
-                    <strong>1</strong>
+                <!-- Loading state -->
+                <div id="prefs-loading" class="prefs-loading hidden">
+                    <div class="prefs-spinner"></div>
+                   <!-- <span>Loading preferences…</span>-->
                 </div>
 
-                <button class="secondary-btn">Add Device</button>
+                <!-- Prefs grid populated by JS -->
+                <div id="prefs-container" class="prefs-grid"></div>
+
+                <div class="action-row" style="margin-top:8px;" id="prefs-actions">
+                    <button class="primary-btn" id="save-prefs-btn">
+                        <span class="btn-text">Save Preferences</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                    <button class="ghost-btn" id="reset-prefs-btn">Reset Changes</button>
+                </div>
+
+                <div id="prefs-toast" class="toast hidden"></div>
             </section>
 
-            <section class="settings-card">
-                <h3>System Info</h3>
-
-                <div class="info-row">
-                    <span>Model</span>
-                    <strong>Smart.IO v1.0</strong>
-                </div>
-
-                <div class="info-row">
-                    <span>Software Version</span>
-                    <strong class="status-good">1.0.1 - Up to date</strong>
-                </div>
-
-                <div class="setting-row stack">
-                    <label for="language">Language</label>
-                    <select id="language" name="language">
-                        <option>English</option>
-                        <option>Spanish</option>
-                        <option>French</option>
-                    </select>
-                </div>
-
-                <div class="setting-row stack">
-                    <label for="timezone">Time Zone</label>
-                    <select id="timezone" name="timezone">
-                        <option>United States</option>
-                        <option>UTC</option>
-                        <option>Atlantic</option>
-                    </select>
+            <!-- ── MATTER SECTION ── -->
+            <section id="section-matter" class="section-panel">
+                <div class="page-header"><div><h1>Matter</h1><p>Matter fabric and device management.</p></div></div>
+                <div class="settings-card">
+                    <h3>Fabric</h3>
+                    <div class="setting-row stack"><label>Fabric Name</label><input type="text" value="Fabric"></div>
+                    <div class="info-row"><span>Current Nodes</span><strong>1</strong></div>
+                    <button class="secondary-btn" style="margin-top:12px">Add Device</button>
                 </div>
             </section>
 
-            <div class="action-row">
-                <button class="primary-btn">Save Changes</button>
-                <button class="ghost-btn">Defaults</button>
-            </div>
+            <section id="section-updates" class="section-panel">
+                <div class="page-header"><div><h1>Updates</h1><p>System update management.</p></div></div>
+                <div class="settings-card"><div class="info-row"><span>Status</span><strong class="status-good">Up to date</strong></div></div>
+            </section>
+            <section id="section-plugins" class="section-panel">
+                <div class="page-header"><div><h1>Plugins</h1><p>Manage installed plugins.</p></div></div>
+                <div class="settings-card"><p style="color:#94a3b8;padding:12px 0">No additional plugins installed.</p></div>
+            </section>
+            <section id="section-security" class="section-panel">
+                <div class="page-header"><div><h1>Security</h1><p>Access control and security settings.</p></div></div>
+                <div class="settings-card"><div class="info-row"><span>Authentication</span><strong>Local Only</strong></div></div>
+            </section>
+            <section id="section-sysinfo" class="section-panel">
+                <div class="page-header"><div><h1>System Information</h1><p>Hardware and runtime details.</p></div></div>
+                <div class="settings-card">
+                    <div class="info-row"><span>Model</span><strong>Smart.IO v1.0</strong></div>
+                    <div class="info-row"><span>Version</span><strong>1.0.1</strong></div>
+                </div>
+            </section>
+
         </main>
     </div>
+
+<script>
+// ── DATA FROM FLASK ──────────────────────────────────────────────
+const ALL_WIDGETS = [
+    {% for w in available_widgets %}
+    { id: "{{ w.id }}", name: "{{ w.name }}", cls: "{{ w.class }}", css: "{{ w.css_name }}" }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+// ── WIDGET LAYOUT STATE ──────────────────────────────────────────
+let gridState = {};
+let poolWidgets = [];
+let currentClientId = document.getElementById('client-select').value;
+
+function initGrid() {
+    gridState = {};
+    for (let r = 1; r <= 3; r++) {
+        gridState[r] = {};
+        for (let c = 1; c <= 3; c++) {
+            gridState[r][c] = null;
+        }
+    }
+}
+
+async function loadLayout(clientId) {
+    initGrid();
+    try {
+        const res = await fetch(`/api/get_layout/${clientId}`);
+        const layout = await res.json();
+        layout.forEach(entry => {
+            const widget = ALL_WIDGETS.find(w => w.id === entry.widget_id);
+            if (widget && gridState[entry.row] && entry.col >= 1 && entry.col <= 3) {
+                gridState[entry.row][entry.col] = widget;
+            }
+        });
+    } catch(e) {
+        console.warn('Could not load layout:', e);
+    }
+    renderAll();
+}
+
+function renderAll() {
+    renderGrid();
+    renderPool();
+}
+
+function renderGrid() {
+    const grid = document.getElementById('grid-editor');
+    grid.innerHTML = '';
+    for (let r = 1; r <= 3; r++) {
+        for (let c = 1; c <= 3; c++) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell';
+            cell.dataset.row = r;
+            cell.dataset.col = c;
+
+            const widget = gridState[r][c];
+            if (widget) {
+                cell.classList.add('occupied');
+                cell.innerHTML = `
+                    <div class="cell-widget" draggable="true" data-widget-id="${widget.id}" data-source="grid" data-row="${r}" data-col="${c}">
+                        <span class="cell-widget-name">${widget.name}</span>
+                        <button class="remove-btn" title="Remove" data-row="${r}" data-col="${c}">✕</button>
+                    </div>`;
+            } else {
+                cell.innerHTML = `<span class="cell-coords">${r},${c}</span>`;
+            }
+
+            cell.addEventListener('dragover', e => { e.preventDefault(); cell.classList.add('drag-over'); });
+            cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+            cell.addEventListener('drop', e => handleDrop(e, r, c));
+            grid.appendChild(cell);
+        }
+    }
+
+    grid.querySelectorAll('.cell-widget').forEach(el => {
+        el.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('widget-id', el.dataset.widgetId);
+            e.dataTransfer.setData('source', 'grid');
+            e.dataTransfer.setData('src-row', el.dataset.row);
+            e.dataTransfer.setData('src-col', el.dataset.col);
+        });
+    });
+
+    grid.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const r = parseInt(btn.dataset.row);
+            const c = parseInt(btn.dataset.col);
+            gridState[r][c] = null;
+            renderAll();
+        });
+    });
+}
+
+function renderPool() {
+    const placed = new Set();
+    for (let r = 1; r <= 3; r++)
+        for (let c = 1; c <= 3; c++)
+            if (gridState[r][c]) placed.add(gridState[r][c].id);
+
+    poolWidgets = ALL_WIDGETS.filter(w => !placed.has(w.id));
+    document.getElementById('pool-count').textContent = poolWidgets.length;
+
+    const pool = document.getElementById('widget-pool');
+    pool.innerHTML = '';
+    if (poolWidgets.length === 0) {
+        pool.innerHTML = '<p class="pool-empty">All widgets placed on grid</p>';
+        return;
+    }
+    poolWidgets.forEach(w => {
+        const chip = document.createElement('div');
+        chip.className = 'widget-chip';
+        chip.draggable = true;
+        chip.dataset.widgetId = w.id;
+        chip.innerHTML = `<span class="chip-name">${w.name}</span><span class="chip-id">${w.id}</span>`;
+        chip.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('widget-id', w.id);
+            e.dataTransfer.setData('source', 'pool');
+        });
+        pool.appendChild(chip);
+    });
+}
+
+function handleDrop(e, targetRow, targetCol) {
+    e.preventDefault();
+    document.querySelectorAll('.grid-cell').forEach(c => c.classList.remove('drag-over'));
+
+    const widgetId = e.dataTransfer.getData('widget-id');
+    const source   = e.dataTransfer.getData('source');
+    const srcRow   = parseInt(e.dataTransfer.getData('src-row'));
+    const srcCol   = parseInt(e.dataTransfer.getData('src-col'));
+    const widget   = ALL_WIDGETS.find(w => w.id === widgetId);
+    if (!widget) return;
+
+    const displaced = gridState[targetRow][targetCol];
+    if (source === 'grid') {
+        gridState[targetRow][targetCol] = widget;
+        gridState[srcRow][srcCol] = displaced;
+    } else {
+        gridState[targetRow][targetCol] = widget;
+    }
+    renderAll();
+}
+
+async function saveLayout() {
+    const btn = document.getElementById('save-layout-btn');
+    btn.classList.add('loading');
+    btn.querySelector('.btn-text').textContent = 'Saving…';
+
+    const entries = [];
+    for (let r = 1; r <= 3; r++)
+        for (let c = 1; c <= 3; c++)
+            if (gridState[r][c])
+                entries.push({ widget_id: gridState[r][c].id, row: r, col: c });
+
+    try {
+        const res = await fetch('/api/save_layout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ client_id: currentClientId, layout: entries })
+        });
+        const data = await res.json();
+        showToast('status-toast', data.message || 'Layout saved!', 'success');
+    } catch(err) {
+        showToast('status-toast', 'Failed to save layout.', 'error');
+    } finally {
+        btn.classList.remove('loading');
+        btn.querySelector('.btn-text').textContent = 'Save Layout';
+    }
+}
+
+// ── WIDGET PREFERENCES ───────────────────────────────────────────
+
+// In-memory copy of loaded prefs: { widget_id: pref_value_string }
+let loadedPrefs  = {};   // original from server
+let currentPrefs = {};   // live edits
+
+let prefClientId = document.getElementById('pref-client-select').value;
+
+async function loadPrefs(clientId) {
+    const container = document.getElementById('prefs-container');
+    const loading   = document.getElementById('prefs-loading');
+    container.innerHTML = '';
+    loading.classList.remove('hidden');
+
+    try {
+        const res  = await fetch(`/api/get_prefs/${clientId}`);
+        const data = await res.json();   // [{widget_id, prefs}, ...]
+        loadedPrefs  = {};
+        data.forEach(row => { loadedPrefs[row.widget_id] = row.prefs ?? ''; });
+        currentPrefs = { ...loadedPrefs };
+    } catch(e) {
+        console.warn('Could not load prefs:', e);
+        loadedPrefs  = {};
+        currentPrefs = {};
+    }
+
+    loading.classList.add('hidden');
+    renderPrefs();
+}
+
+function renderPrefs() {
+    const container = document.getElementById('prefs-container');
+    container.innerHTML = '';
+
+    if (ALL_WIDGETS.length === 0) {
+        container.innerHTML = '<p class="pool-empty">No widgets found.</p>';
+        return;
+    }
+
+    ALL_WIDGETS.forEach(w => {
+        const val = currentPrefs[w.id] ?? '';
+        const hasVal = val.trim() !== '';
+
+        const card = document.createElement('div');
+        card.className = 'pref-card' + (hasVal ? ' pref-card--set' : '');
+        card.dataset.widgetId = w.id;
+
+        card.innerHTML = `
+            <div class="pref-card-header">
+                <div class="pref-card-title">
+                    <br></br>
+                    <span class="pref-widget-name">${w.name}</span>
+                    <span class="pref-widget-id">${w.id}</span>
+                </div>
+                <div class="pref-status-dot ${hasVal ? 'dot--set' : 'dot--unset'}" title="${hasVal ? 'Preference set' : 'No preference set'}"></div>
+            </div>
+            <div class="pref-card-body">
+                <label class="pref-label" for="pref-input-${w.id}"></label>
+                <div class="pref-input-wrap">
+                    <input
+                        type="text"
+                        class="pref-input"
+                        id="pref-input-${w.id}"
+                        placeholder="No preference set"
+                        value="${escHtml(val)}"
+                        data-widget-id="${w.id}"
+                    >
+                    ${hasVal ? `<button class="pref-clear-btn" data-widget-id="${w.id}" title="Clear preference">✕</button>` : ''}
+                </div>
+            </div>`;
+
+        container.appendChild(card);
+    });
+
+    // Input listeners
+    container.querySelectorAll('.pref-input').forEach(input => {
+        input.addEventListener('input', e => {
+            const wid = e.target.dataset.widgetId;
+            currentPrefs[wid] = e.target.value;
+            updateCardState(wid);
+        });
+    });
+
+    // Clear buttons
+    container.querySelectorAll('.pref-clear-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const wid = e.target.dataset.widgetId;
+            currentPrefs[wid] = '';
+            const input = document.getElementById(`pref-input-${wid}`);
+            if (input) input.value = '';
+            updateCardState(wid);
+        });
+    });
+}
+
+function updateCardState(widgetId) {
+    const card = document.querySelector(`.pref-card[data-widget-id="${widgetId}"]`);
+    if (!card) return;
+    const val = (currentPrefs[widgetId] ?? '').trim();
+    const dot = card.querySelector('.pref-status-dot');
+
+    card.classList.toggle('pref-card--set', val !== '');
+    if (dot) {
+        dot.classList.toggle('dot--set',   val !== '');
+        dot.classList.toggle('dot--unset', val === '');
+        dot.title = val !== '' ? 'Preference set' : 'No preference set';
+    }
+
+    // Refresh clear button
+    const wrap = card.querySelector('.pref-input-wrap');
+    const existing = wrap.querySelector('.pref-clear-btn');
+    if (val !== '' && !existing) {
+        const btn = document.createElement('button');
+        btn.className = 'pref-clear-btn';
+        btn.dataset.widgetId = widgetId;
+        btn.title = 'Clear preference';
+        btn.textContent = '✕';
+        btn.addEventListener('click', () => {
+            currentPrefs[widgetId] = '';
+            const inp = document.getElementById(`pref-input-${widgetId}`);
+            if (inp) inp.value = '';
+            updateCardState(widgetId);
+        });
+        wrap.appendChild(btn);
+    } else if (val === '' && existing) {
+        existing.remove();
+    }
+}
+
+async function savePrefs() {
+    const btn = document.getElementById('save-prefs-btn');
+    btn.classList.add('loading');
+    btn.querySelector('.btn-text').textContent = 'Saving…';
+
+    // Build payload — include all widgets, even those with empty prefs
+    const prefsPayload = ALL_WIDGETS.map(w => ({
+        widget_id: w.id,
+        prefs: currentPrefs[w.id] ?? ''
+    }));
+
+    try {
+        const res = await fetch('/api/save_prefs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ client_id: prefClientId, prefs: prefsPayload })
+        });
+        const data = await res.json();
+        loadedPrefs = { ...currentPrefs };
+        showToast('prefs-toast', data.message || 'Preferences saved!', 'success');
+    } catch(err) {
+        showToast('prefs-toast', 'Failed to save preferences.', 'error');
+    } finally {
+        btn.classList.remove('loading');
+        btn.querySelector('.btn-text').textContent = 'Save Preferences';
+    }
+}
+
+function resetPrefs() {
+    currentPrefs = { ...loadedPrefs };
+    renderPrefs();
+    showToast('prefs-toast', 'Changes reset to last saved state.', 'success');
+}
+
+// ── TOAST (shared) ───────────────────────────────────────────────
+function showToast(id, msg, type = 'success') {
+    const t = document.getElementById(id);
+    if (!t) return;
+    t.textContent = msg;
+    t.className = `toast ${type}`;
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => t.classList.add('hidden'), 3000);
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────
+function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── NAV ──────────────────────────────────────────────────────────
+document.querySelectorAll('.sidebar-nav li').forEach(li => {
+    li.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-nav li').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.section-panel').forEach(s => s.classList.remove('active'));
+        li.classList.add('active');
+        const sec = document.getElementById('section-' + li.dataset.section);
+        if (sec) sec.classList.add('active');
+
+        // Lazy-load prefs when switching to that tab
+        if (li.dataset.section === 'connection') {
+            loadPrefs(prefClientId);
+        }
+    });
+});
+
+// ── EVENT BINDINGS ───────────────────────────────────────────────
+document.getElementById('client-select').addEventListener('change', e => {
+    currentClientId = e.target.value;
+    loadLayout(currentClientId);
+});
+
+document.getElementById('save-layout-btn').addEventListener('click', saveLayout);
+document.getElementById('clear-btn').addEventListener('click', () => { initGrid(); renderAll(); });
+
+document.getElementById('pref-client-select').addEventListener('change', e => {
+    prefClientId = e.target.value;
+    loadPrefs(prefClientId);
+});
+
+document.getElementById('save-prefs-btn').addEventListener('click', savePrefs);
+document.getElementById('reset-prefs-btn').addEventListener('click', resetPrefs);
+
+// ── INIT ─────────────────────────────────────────────────────────
+loadLayout(currentClientId);
+</script>
 </body>
 </html>

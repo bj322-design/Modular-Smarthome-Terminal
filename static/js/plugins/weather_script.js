@@ -2,6 +2,17 @@ function getActiveClientId() {
     return localStorage.getItem('client_id') || 'default_client';
 }
 
+export async function updateCity() {
+    const clientID = getActiveClientId();
+    try {
+        const response = await fetch(`/api/weather/smt??city=${city}clientID=${clientID}`)
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    } catch (error) {
+        console.error("Weather City Change Failed:", error);
+    }
+}
+
+
 export async function updateWeather() {
     const clientID = getActiveClientId();
     const addy = `/api/weather/smt?client_id=${clientID}`;

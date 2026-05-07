@@ -8,6 +8,7 @@ import {} from './plugins/tasks_script.js'
 import './plugins/spotify_script.js';           
 import { updateCalendar } from './plugins/calendar_script.js';
 import { updatePackages } from './plugins/package_script.js';
+import {updateArrivingToday} from './plugins/arrivingToday_script.js'
 
 // Call update functions for each plugin
 updateClock();
@@ -16,6 +17,7 @@ updatePackages();
 import './plugins/fakeLight_script.js';
 
 import './plugins/blackjack_script.js'
+
 
 
 

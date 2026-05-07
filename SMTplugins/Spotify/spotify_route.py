@@ -97,7 +97,7 @@ def spotify_callback():
     access_token = token_data.get("access_token")
     refresh_token = token_data.get("refresh_token")
 
-    return redirect("/")
+    return redirect(request.referrer )#or ('/'))
 
 
 # Main API route

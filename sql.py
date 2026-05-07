@@ -34,3 +34,53 @@ def setup():
     conn.commit()
     conn.close()
     print("...SQL Lite 3 SETUP COMPLETE")
+
+
+def update_widget_preference(client_id, widget_id, new_prefs):
+    try:
+        conn = sqlite3.connect('smt_database.db')
+        cursor = conn.cursor()
+        
+        # The UPDATE query
+        query = """
+            UPDATE widgetPrefs 
+            SET prefs = ? 
+            WHERE client_id = ? AND widget_id = ?
+        """
+        
+        # Execute with parameters for security
+        cursor.execute(query, (new_prefs, client_id, widget_id))
+        
+        # CRITICAL: Changes are not saved unless you commit
+        conn.commit()
+        
+        if cursor.rowcount == 0:
+            print("No rows were updated. Check if the ID exists.")
+        else:
+            print(f"Successfully updated {widget_id} for {client_id}")
+            
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        conn.close()
+
+
+
+def addWidgetPref(widgetID, clientID, preferences):
+    conn = sqlite3.connect('smt_database.db')
+    cursor = conn.cursor()
+    query = "INSERT INTO widgetPrefs (client_id, widget_id, prefs) VALUES (?, ?, ?)"
+    data = (widgetID, clientID, preferences)
+    cursor.execute(query, data)
+    conn.commit()
+    conn.close()
+
+
+def add_client(clientName, clientID):
+    conn = sqlite3.connect('smt_database.db')
+    cursor = conn.cursor()
+    query = "INSERT INTO clients (id, name) VALUES (?, ?)"
+    data = (clientID, clientName)
+    cursor.execute(query, data)
+    conn.commit()
+    conn.close()

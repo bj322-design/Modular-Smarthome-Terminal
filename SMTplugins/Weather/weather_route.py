@@ -4,6 +4,7 @@ from geopy.geocoders import Nominatim
 import os
 import json
 import sqlite3
+from sql import update_widget_preference, addWidgetPref
 
 weather_bp = Blueprint('weather_bp', __name__)
 geolocator = Nominatim(user_agent="SMT_Terminal_Project")
@@ -92,6 +93,10 @@ def get_nws_weatherClient():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@weather_bp.route('/api/weather/smt/changeCity/<city><clientID>', methods=['GET'])
+def changeCity(city, clientID):
+    sql.update_widget_preferences('weather', clientID, city)
 
 
 '''@weather_bp.route('/api/weather/smt', methods=['GET'])
