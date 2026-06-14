@@ -91,10 +91,10 @@ Open your terminal in the root directory and run:
 ```bash
 docker compose up --build -d
 ```
+---
+### Network Navigation
 
-### 2. Network Navigation
-
-Once the container is running, the terminal broadcasts across your local network interface:
+Once the container / server (with normal setup) is running, the terminal broadcasts across your local network interface:
 
 * **To View the Dashboard:** Open a browser on any machine, phone, or tablet on your local network and navigate to:
 ```text
