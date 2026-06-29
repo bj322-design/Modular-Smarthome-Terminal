@@ -1,0 +1,77 @@
+{
+  "widgets": [
+    {
+      "id": "clock",
+      "name": "Clock",
+      "class": "clock-widget",
+      "css_name": "clock_widget.css",
+      "row": 1,
+      "col": 1
+    },
+    {
+      "id": "temp",
+      "name": "Temperature",
+      "class": "temp-sensor-widget",
+      "css_name": "temperature_sensor_widget.css",
+      "row": 1,
+      "col": 2
+    },
+    {
+      "id": "weather",
+      "name": "Weather",
+      "class": "weather-widget",
+      "css_name": "weather_widget.css",
+      "row": 1,
+      "col": 3
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "class": "date-widget",
+      "css_name": "date_widget.css",
+      "row": 2,
+      "col": 3
+    },
+    {
+      "id": "bj-container",
+      "name": "Blackjack",
+      "class": "blackjack-widget",
+      "css_name": "blackjack_widget.css",
+      "row": 2,
+      "col": 2
+    },
+     {
+      "id": "time-zone",
+      "name": "Time Zone",
+      "class": "timeZone-widget",
+      "css_name": "timeZone_widget.css",
+      "row": 2,
+      "col": 1
+    },
+    
+    {
+      "id": "google-tasks",
+      "name": "Google Tasks",
+      "class": "googleTasks-widget",
+      "css_name": "google_tasks_widget.css",
+      "row": 3,
+      "col": 3
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "class": "spotify-widget",
+      "css_name": "spotify_widget.css",
+      "row": 3,
+      "col": 2
+    },
+    {
+      "id": "fake-light",
+      "name": "Fake Light",
+      "class": "fake-light-",
+      "css_name": "fakeLight_widget.css",
+      "row": 3,
+      "col": 1
+    }
+  ]
+}

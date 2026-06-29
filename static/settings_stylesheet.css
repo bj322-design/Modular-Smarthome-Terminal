@@ -558,6 +558,56 @@ input:checked + .slider::before { transform: translateX(22px); }
     padding: 4px;
     border-radius: 4px;
 }
+.widget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+    margin-bottom: 18px;
+}
+
+.widget-box {
+    background: rgba(30, 41, 59, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 18px;
+    padding: 18px;
+    min-height: 125px;
+    transition: 0.25s ease;
+}
+.widget-box select {
+    margin-top: 12px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: rgba(15, 23, 42, 0.95);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.widget-box label {
+    display: block;
+    margin-bottom: 10px;
+    color: #dbeafe;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.widget-box:hover {
+    border-color: rgba(96, 165, 250, 0.45);
+    background: rgba(30, 41, 59, 0.82);
+}
+.tab-content {
+    display: none;
+    width: 100%;
+}
+
+.active-tab {
+    display: block;
+}
 
 .client-name-input:hover, .client-name-input:focus {
     background: var(--input-bg);
