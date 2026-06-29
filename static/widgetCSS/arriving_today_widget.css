@@ -1,0 +1,29 @@
+.today-priority {
+    border-left: 4px solid #3b82f6; /* Blue priority bar */
+    background: rgba(59, 130, 246, 0.1) !important;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.pkg-count-header {
+    font-weight: bold;
+    color: #f1f5f9;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+.no-packages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 30px;
+}
+
+.zero-packages {
+    width: 25%;
+    height: auto;
+    margin: 10px;
+}

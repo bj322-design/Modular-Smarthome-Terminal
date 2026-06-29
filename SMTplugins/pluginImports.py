@@ -7,3 +7,4 @@ from SMTplugins.GoogleTasks.googleTasks_route import googleTasks_bp
 from SMTplugins.Spotify.spotify_route import spotify_bp
 from SMTplugins.FakeLight.fakeLight_route import fakeLight_bp
 from SMTplugins.BlackJack.blackjack_route import blackjack_bp
+from SMTplugins.ArrivingToday.arrivingToday_route import arriving_today_bp

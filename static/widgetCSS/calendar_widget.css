@@ -132,3 +132,106 @@
     color: rgba(255, 255, 255, 0.3);
     font-style: italic;
 }
+
+.task-section {
+  margin-top: 12px;
+  display: none;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.task-label {
+  font-size: 0.7rem;
+  color: #c084fc;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.task-input-row {
+  display: flex;
+  gap: 6px;
+}
+
+/* INPUT */
+.task-input-row input {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #1a1a24;
+  color: #e8e6f0;
+  font-size: 0.7rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.task-input-row input::placeholder {
+  color: #5a5870;
+}
+
+.task-input-row input:focus {
+  border-color: #7c6af7;
+  box-shadow: 0 0 6px rgba(124,106,247,0.4);
+}
+
+/* BUTTON */
+.task-input-row button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(135deg, #7c6af7, #c084fc);
+  color: white;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-input-row button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(124,106,247,0.4);
+}
+
+.task-input-row button:active {
+  transform: scale(0.96);
+}
+
+.cal-event-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cal-event-item button {
+  background: none;
+  border: none;
+  color: #c084fc;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.cal-event-item button:hover {
+  color: white;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal-nav-btn {
+  background: transparent;
+  border: none;
+  color: #c084fc; /* purple */
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.cal-nav-btn:hover {
+  background: rgba(192, 132, 252, 0.15);
+  color: white;
+  transform: scale(1.2);
+}

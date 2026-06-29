@@ -1,0 +1,117 @@
+:root {
+    --bg-color: #0f111a;
+    --card-bg: #1a1d2b;
+    --accent-color: #4a90e2;
+    --text-main: #e0e0e0;
+    --text-dim: #a0a0a0;
+    --input-bg: #25293d;
+    --border-radius: 12px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.start-screen-container {
+    width: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.welcome-header h1 {
+    font-size: 47px;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1.2px;
+}
+
+.welcome-header p {
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+}
+
+.setup-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--input-bg);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border: 1px solid var(--accent-color);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.primary-btn:hover {
+    background-color: #357abd;
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+.system-status {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    height: 8px;
+    width: 8px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #4caf50;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMT - Welcome</title>
+    <link rel="stylesheet" href="static\start_page_style.css">
+</head>
+<body>
+    <div class="start-screen-container">
+        <header class="welcome-header">
+            <h1>Welcome to SMT</h1>
+            <p>Smart Modular Terminal Hub</p>
+        </header>
+
+        <main class="setup-card">
+            <div class="input-group">
+                <label for="client-id">Client ID</label>
+                <input type="text" id="client-id" placeholder="e.g. Brandon-Desk" autocomplete="off">
+            </div>
+            
+            <button class="primary-btn" onclick="handleCreate()">Create New Client</button>
+        </main>
+
+        <footer class="system-status">
+            <p>(No special characters or spaces)</p>
+            <p>Enjoy Data At A Glance </p>
+        </footer>
+    </div>
+
+    <script>
+        async function handleCreate() {
+            const clientId = document.getElementById('client-id').value;
+            if(clientId) {
+             try {
+                const response = await fetch('/api/create_client', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ client_id: clientId })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log("SMT Client initialized:", result.client_id);
+                // Save to localStorage so the browser remembers this hub
+                localStorage.setItem('client_id', result.client_id);
+                // Redirect to the dynamic client home route
+                window.location.href = `/${result.client_id}`;
+            } else {
+                alert("Error: " + result.error);
+            }
+        } catch (error) {
+            console.error("Failed to create client:", error);
+            alert("Connection to SMT Hub failed.");
+        }
+    } else {
+        alert("Please enter a Client ID to proceed.");
+    }
+}
+    </script>
+</body>
+</html>

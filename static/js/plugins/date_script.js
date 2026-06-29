@@ -21,8 +21,7 @@ async function updateDate() {
         widget.innerHTML = `
             <div class="date-container">
                 <div class="date-name">${dayName}</div>
-                <div class="date-month">${month}</div>
-                <div class="date-day">${day}</div>
+                <div class="date-month">${month} ${day}</div>
                 <div class="date-year">${year}</div>
             </div>
         `;

@@ -73,6 +73,29 @@ widgetIds.forEach(id => {
             if (el) el.innerHTML = html;
         });
 });
+
+
+window.onload = () => { 
+    // Capture client_id from Flask template variable or URL
+    const ACTIVE_CLIENT_ID = "{{ client_id }}";
+    
+    // Now you can save it to localStorage for your other scripts to use
+    localStorage.setItem('client_id', ACTIVE_CLIENT_ID);
+    console.log("Client session started for: " + ACTIVE_CLIENT_ID);
+
+    /*if (clientIdFromUrl) {
+        initializeClient(clientIdFromUrl);
+    }*/
+}
+/*function initializeClient(clientId) {
+    if (clientId) {
+        localStorage.setItem('client_id', clientId);
+        console.log("Client session started for: " + clientId);
+    }
+}*/
+
+//window.onload = () => { initializeClient("")};
+
 </script>
 </body>
 

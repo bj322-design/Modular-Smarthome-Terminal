@@ -33,10 +33,10 @@
       "col": 3
     },
     {
-      "id": "bj-container",
-      "name": "Blackjack",
-      "class": "blackjack-widget",
-      "css_name": "blackjack_widget.css",
+      "id": "calendar",
+      "name": "Calendar",
+      "class": "calendar-widget",
+      "css_name": "calendar_widget.css",
       "row": 2,
       "col": 2
     },
