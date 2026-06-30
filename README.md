@@ -30,7 +30,7 @@ The terminal comes pre-packaged with a modular plugin system (`SMTplugins/`). Be
 | **Clock** | ✅ Working | Real-time local digital clock widget. |
 | **Date** | ✅ Working | Calendar date display widget. |
 | **Time-Zones** | ✅ Working | Tracks multiple configureable international time zones concurrently. |
-| **Calendar** | ✅ Working | Integrates your personal schedules and upcoming calendar events. |
+| **Calendar** | ⏳ Basic Calandar Working | **COMING SOON** Integrates your personal schedules and upcoming calendar events. |
 | **Google Tasks** | ✅ Working | Synchronizes, displays, and updates personal to-do checklists. |
 | **Spotify Integration** | ✅ Working | Streams current media states, tracking playback and track details. |
 | **Blackjack** | ✅ Working | A fully playable classic Blackjack card game module built into your grid. |

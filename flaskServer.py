@@ -245,21 +245,6 @@ if __name__ == '__main__':
 
 
 
-@app.route("/api/layout", methods=["GET"])
-def get_layout():
-    with open("layout_client.json", "r") as file:
-        layout = json.load(file)
-    return jsonify(layout)
-
-
-@app.route("/api/layout", methods=["POST"])
-def save_layout():
-    new_layout = request.json
-
-    with open("layout_client.json", "w") as file:
-        json.dump(new_layout, file, indent=4)
-
-    return jsonify({"message": "Layout saved"})
 
 
 @app.route("/api/layout/default", methods=["POST"])
